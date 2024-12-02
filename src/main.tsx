@@ -11,32 +11,33 @@ import CadastroCliente from './componentes/cadastrocliente/CadastroCliente.tsx';
 import CadastroPagamento from './componentes/cadastropagamento/CadastroPagamento.tsx';
 import CriacaoPromocoes from './componentes/criacaopromocoes/CriacaoPromocoes.tsx';
 import GestaoEstoque from './componentes/gestaoestoque/GestaoEstoque.tsx';
-
+import Header from './componentes/header.tsx';
+import Footer from './componentes/footer.tsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element:  <App />,
+    element: <><Header/> <App /> <Footer/></>,
   },
   {
     path: "/cadastro-chocolate",
-    element:  <CadastroChocolate/>,
+    element: <><Header/> <CadastroChocolate/> <Footer/></>,
   },
   {
     path: "/cadastro-cliente",
-    element:  <CadastroCliente/>,
+    element: <><Header/> <CadastroCliente/> <Footer/></>,
   },
   {
     path: "/cadastro-pagamento",
-    element: <CadastroPagamento/>,
+    element: <><Header/> <CadastroPagamento/> <Footer/></>,
   },
   {
     path: "/criacao-promocoes",
-    element: <CriacaoPromocoes/>,
+    element: <><Header/> <CriacaoPromocoes/> <Footer/></>,
   },
   {
     path: "/gestao-estoque",
-    element: <GestaoEstoque/>,
+    element: <><Header/> <GestaoEstoque/> <Footer/></>,
   },
 ]);
 
