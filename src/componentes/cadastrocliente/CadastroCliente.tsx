@@ -15,7 +15,7 @@ export default function CadastroCliente (){
             nome: nome,
             cpf: cpf
         }
-        fetch("http://localhost:8000/cliente",{
+        fetch("https://one022b-cacaushow-trabalho-ixsq.onrender.com/cliente",{
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -24,7 +24,7 @@ export default function CadastroCliente (){
         }).then(response => {
             if(response.status === 200){
                 alert("Cliente cadastrado com sucesso")
-                navigate("/")
+                navigate("/lista-cliente")
             }
             else{
                 alert("Erro ao cadastrar o Cliente")
@@ -43,7 +43,7 @@ export default function CadastroCliente (){
 
     return(
         <>
-        <h1>Tela Cadastro Cliente</h1>
+        <h1>Cadastrar Cliente</h1>
         <form onSubmit={handleForm}>
             <div>
                 <label htmlFor="clienteid">Cliente ID: </label>
