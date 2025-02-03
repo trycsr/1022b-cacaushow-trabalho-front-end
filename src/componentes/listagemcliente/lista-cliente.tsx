@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+
 type ClienteType = {
     clienteId:number,
     nome:string,
@@ -13,14 +14,32 @@ export default function ListaCliente() {
         .then(resposta=>resposta.json())
         .then(dados=>setCliente(dados))
       },[])
+      function handleExcluir(clienteId:number){
+        fetch(`https://one022b-cacaushow-trabalho-ixsq.onrender.com/cliente/${clienteId}`,{
+          method:"DELETE"
+        })
+        .then(resposta=>{
+          if(resposta.status==200){
+            alert("Excluído com sucesso")
+            window.location.reload()
+          }
+          else{
+            alert("Erro ao excluir")
+          }
+        })
+      }
     return (
         <>
-        <Link to={"/cadastro-cliente"}>Link Cadastro Cliente</Link>
+         <div className='container-link'>
+         <Link to={"/cadastro-cliente"} className="link-bonitao">Clientes</Link>
+         </div>
             {cliente.map(clien => {
                 return (
                     <div key={clien.clienteId}className='cliente-item'>
                     <h1>{clien.nome}</h1>
                     <p>{clien.cpf}</p>
+                <button onClick={()=>{handleExcluir(clien.clienteId)}}>Excluir</button>
+              <Link to={`/alterar-cliente/${clien.clienteId}`}>Alterar</Link>
                   </div>
                 )
             })}

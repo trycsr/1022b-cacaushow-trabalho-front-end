@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+
 type EstoqueType = {
     itemId:number,
     nomeProduto:string,
@@ -14,16 +15,34 @@ export default function ListaEstoque() {
         .then(resposta=>resposta.json())
         .then(dados=>setEstoque(dados))
       },[])
+      function handleExcluir(itemId:number){
+        fetch(`https://one022b-cacaushow-trabalho-ixsq.onrender.com/estoque/${itemId}`,{
+          method:"DELETE"
+        })
+        .then(resposta=>{
+          if(resposta.status==200){
+            alert("Excluído com sucesso")
+            window.location.reload()
+          }
+          else{
+            alert("Erro ao excluir")
+          }
+        })
+      }
     return (
         <>
-        <Link to={"/gestao-estoque"}>Link Gestão Estoque</Link>
+         <div className='container-link'>
+         <Link to={"/gestao-estoque"} className="link-bonitao">Estoques</Link>
+         </div>
             {estoque.map(esto => {
                 return (
                     <div key={esto.itemId}className='estoque-item'>
                     <h1>{esto.nomeProduto}</h1>
                     <p>{esto.quantidade}</p>
                     <p>{esto.localizacao}</p>
-                    </div>
+                    <button onClick={()=>{handleExcluir(esto.itemId)}}>Excluir</button>
+              <Link to={`/alterar-estoque/${esto.itemId}`}>Alterar</Link>
+                  </div>
                 )
             })}
         </>
